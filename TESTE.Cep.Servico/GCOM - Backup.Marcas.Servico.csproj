@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>1df9119b-ecb6-490f-a21d-241df8968c04</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.11" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TESTE.Marcas.Aplicacao\TESTE.Marcas.Aplicacao.csproj" />
+    <ProjectReference Include="..\TESTE.Marcas.CrossCutting\TESTE.Marcas.CrossCutting.csproj" />
+    <ProjectReference Include="..\TESTE.Marcas.Dominio\TESTE.Marcas.Dominio.csproj" />
+  </ItemGroup>
+
+
+</Project>

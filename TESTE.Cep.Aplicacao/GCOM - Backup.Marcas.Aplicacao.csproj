@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TESTE.Marcas.CrossCutting\TESTE.Marcas.CrossCutting.csproj" />
+    <ProjectReference Include="..\TESTE.Marcas.Dominio\TESTE.Marcas.Dominio.csproj" />
+    <ProjectReference Include="..\TESTE.Marcas.Infra.Repositorios\TESTE.Marcas.Infra.Repositorios.csproj" />
+  </ItemGroup>
+
+</Project>
