@@ -37,6 +37,9 @@ namespace TESTE.PesquisaClima.Infra.Repositorios
             return Result;
         }
 
-        
+        public void SalvaAeroporto(PCModels obj)
+        {
+            throw new NotImplementedException();
+        }
     }
     }
