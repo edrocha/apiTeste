@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Net.Http;
+using System.Numerics;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
 using TESTE.Cep.Dominio.Entidades;
@@ -17,24 +18,38 @@ namespace TESTE.PesquisaClima.Infra.Repositorios
 
         public void SalvaAeroporto(PCModels obj)
         {
-            string connectionString = @"Data Source=conhecimentoe.mysql.dbaas.com.br; Database=conhecimentoe; User ID=conhecimentoe; Password=Ebr715900!";
+            string connectionString = @"server=conhecimentoe.mysql.dbaas.com.br;uid=conhecimentoe;pwd=Ebr715900!;database=conhecimentoe";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
                 {
-                    string insertData = "insert into signup_table(firstname,surname,mobile_number,email_address,password," +
-                                        "confirm_password) values (@F_Name, @S_Name, @M_Number, @E_Address, @Password, @C_Password)";
+                    string insertData = "INSERT INTO climaAeroporto ( umidade,visibilidade,intensidade,Age," +
+                        "codigo_icao,pressao_atmosferica, vento,direcao_vento, condicao,condicao_desc,temp,atualizado_em)" +
+                        " VALUES(" + "@Fumidade, @Fvisibilidade, @Fintensidade" +
+                        "@Fcodigo_icao,@Fpressao_atmosferica, @Fvento,@Fdirecao_vento,"+
+                        "@Fcondicao,@Fcondicao_desc,@Ftemp,@Fatualizado_em)";
+
                     MySqlCommand command = new MySqlCommand(insertData, connection);
 
-                    /* command.Parameters.AddWithValue("@F_Name", FN_TextBox.Text);
-                     command.Parameters.AddWithValue("@S_Name", SN_TextBox.Text);
-                     command.Parameters.AddWithValue("@M_Number", MN_TextBox.Text);
-                     command.Parameters.AddWithValue("@E_Address", EA_TextBox.Text);
-                     command.Parameters.AddWithValue("@Password", P_TextBox.Text);
-                     command.Parameters.AddWithValue("@C_Password", CP_TextBox.Text);
-                     int result = command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@Fumidade", obj.umidade);
+                     command.Parameters.AddWithValue("@Fvisibilidade", obj.visibilidade);
+                     command.Parameters.AddWithValue("@Fintensidade", obj.intensidade);
+                     
+                    //------------------------------------------------------------------
+                     command.Parameters.AddWithValue("@Fcondicao", obj.condicao);
+                     command.Parameters.AddWithValue("@Fcondicao_desc", obj.condicao_desc);
+                     command.Parameters.AddWithValue("@Fvento", obj.vento);
+                     command.Parameters.AddWithValue("@Fdirecao_vento", obj.direcao_vento);
+                    //------------------------------------------------------------------
+                    command.Parameters.AddWithValue("@Fcodigo_icao", obj.codigo_icao);
+                    command.Parameters.AddWithValue("@Fpressao_atmosferica", obj.pressao_atmosferica);
+                    command.Parameters.AddWithValue("@Ftemp", obj.temp);
+                    command.Parameters.AddWithValue("@Fatualizado_em", obj.atualizado_em);
+                    //------------------------------------------------------------------
+
+                    int result = command.ExecuteNonQuery();
                      connection.Open();
-                     */
+
                 }
                 catch (Exception ex)
                 {
@@ -64,7 +79,7 @@ namespace TESTE.PesquisaClima.Infra.Repositorios
                 return objretorno;  // mando o objeto vazio sem nada
             }
             PCModels Result = JsonConvert.DeserializeObject<PCModels>(clima);
-            //salvaAeroporto(result);
+            SalvaAeroporto(Result);
             return Result;
             
         }
